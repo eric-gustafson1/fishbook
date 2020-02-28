@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './UIElements/Card';
 import PlaceItem from './PlaceItem';
+import Button from './FormElements/Button';
 import './PlaceList.css';
 
 const PlaceList = ({ items }) => {
@@ -8,7 +9,7 @@ const PlaceList = ({ items }) => {
         return <div className='place-list center'>
             <Card>
                 <h2>No trips found...</h2>
-                <button>Log a Trip</button>
+                <Button to='/places/new'>Log a Trip</Button>
             </Card>
 
         </div>

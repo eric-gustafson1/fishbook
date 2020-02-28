@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Input from '../components/FormElements/Input';
 import Button from '../components/FormElements/Button';
+import Card from '../components/UIElements/Card';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../components/utils/validators';
 import { useForm } from '../components/hooks/form-hook';
 import './FormPlace.css';
@@ -65,16 +66,18 @@ const UpdatePlace = () => {
     const identifiedPlace = TEMP_PLACES.find(place => place.id === placeId)
 
     useEffect(() => {
-        setFormData({
-            title: {
-                value: identifiedPlace.title,
-                isValid: true
-            },
-            description: {
-                value: identifiedPlace.description,
-                isValid: true
-            }
-        }, true)
+        if (identifiedPlace) {
+            setFormData({
+                title: {
+                    value: identifiedPlace.title,
+                    isValid: true
+                },
+                description: {
+                    value: identifiedPlace.description,
+                    isValid: true
+                }
+            }, true)
+        }
         setIsLoading(false);
     }, [setFormData, identifiedPlace]);
 
@@ -87,7 +90,9 @@ const UpdatePlace = () => {
     if (!identifiedPlace) {
         return (
             <div className='center'>
-                <h2>Trip was not found</h2>
+                <Card>
+                    <h2>Trip was not found</h2>
+                </Card>
             </div>
         )
     }
