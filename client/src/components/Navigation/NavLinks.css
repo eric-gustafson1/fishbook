@@ -48,6 +48,7 @@
     color: white;
   }
   
+  
   @media (min-width: 768px) {
     .nav-links {
       flex-direction: row;
@@ -70,7 +71,7 @@
     
     .nav-links button:hover,
     .nav-links button:active {
-      background: #cc6600;
-      color: #292929;
+      background: white;
+      color: #cc6600;
     }
   }
