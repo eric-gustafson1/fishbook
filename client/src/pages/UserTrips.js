@@ -1,8 +1,8 @@
 import React from 'react';
-import PlaceList from '../components/PlaceList';
+import TripList from '../components/TripList';
 import { useParams } from 'react-router-dom';
 
-const TEMP_PLACES = [
+const TEMP_TRIPS = [
     {
         id: 'p1',
         title: 'Eagle River',
@@ -41,10 +41,10 @@ const TEMP_PLACES = [
     }
 ]
 
-const UserPlaces = () => {
+const UserTrips = () => {
     const userId = useParams().userid;
-    const loadedPlaces = TEMP_PLACES.filter(place => place.creator === userId)
-    return <PlaceList items={loadedPlaces} />
+    const loadedTrips = TEMP_TRIPS.filter(trip => trip.creator === userId)
+    return <TripList items={loadedTrips} />
 }
 
-export default UserPlaces;
+export default UserTrips;

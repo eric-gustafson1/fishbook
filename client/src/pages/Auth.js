@@ -61,7 +61,7 @@ const Auth = () => {
                         type='text'
                         label='Enter a Username'
                         validators={[VALIDATOR_REQUIRE()]}
-                        errorText='Enter a Username'
+                        errorText='Enter a Username of 6 characters or longer'
                         onInput={inputHandler}
                     />
                 }

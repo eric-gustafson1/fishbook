@@ -3,10 +3,10 @@ import Input from '../components/FormElements/Input';
 import Button from '../components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../components/utils/validators';
 import { useForm } from '../components/hooks/form-hook';
-import './FormPlace.css';
+import './FormTrip.css';
 
 
-const NewPlace = () => {
+const NewTrip = () => {
     const [formState, InputHandler] = useForm({
         title: {
             value: '',
@@ -23,13 +23,13 @@ const NewPlace = () => {
     }, false);
 
 
-    const placeSubmitHandler = (e) => {
+    const tripSubmitHandler = (e) => {
         e.preventDefault();
         console.log(formState.inputs) //send this to the back end
     }
 
     return (
-        <form className='place-form' onSubmit={placeSubmitHandler}>
+        <form className='trip-form' onSubmit={tripSubmitHandler}>
             <Input
                 id='title'
                 element='input'
@@ -50,9 +50,34 @@ const NewPlace = () => {
             <Input
                 id='address'
                 element='input'
-                label='Address'
+                label='Nearest Town'
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText='Enter the nearest town...'
+                onInput={InputHandler}
+            />
+            <Input
+                id='weather'
+                element='input'
+                label='Weather Conditions'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='Describe the weather...'
+                onInput={InputHandler}
+            />
+            <Input
+                id='flies'
+                element='input'
+                label='Flies Used'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='What flies worked...'
+                onInput={InputHandler}
+            />
+            <Input
+                id='date'
+                element='input'
+                label='Trip Date'
+                type='date'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='Enter the date...'
                 onInput={InputHandler}
             />
             <Button type='submit' disabled={!formState.isValid} >ADD TRIP</Button>
@@ -61,4 +86,4 @@ const NewPlace = () => {
 
 };
 
-export default NewPlace;
+export default NewTrip;

@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
-import Card from '../components/UIElements/Card';
-import Button from '../components/FormElements/Button';
-import Modal from '../components/UIElements/Modal';
-import Map from '../components/UIElements/Map';
-import { AuthContext } from '../components/context/auth-context'
-import './PlaceItem.css'
+import Card from './UIElements/Card';
+import Button from './FormElements/Button';
+import Modal from './UIElements/Modal';
+import Map from './UIElements/Map';
+import { AuthContext } from './context/auth-context'
+import './TripItem.css'
 
-const PlaceItem = ({ image, title, address, description, id, coordinates }) => {
+const TripItem = ({ image, title, address, description, id, coordinates }) => {
     const auth = useContext(AuthContext);
 
     const [showMap, setShowMap] = useState(false);
@@ -27,8 +27,8 @@ const PlaceItem = ({ image, title, address, description, id, coordinates }) => {
                 show={showMap}
                 onCancel={closeMap}
                 header={address}
-                contentClass='place-item__modal-content'
-                footerClass='place-item__modal-actions'
+                contentClass='trip-item__modal-content'
+                footerClass='trip-item__modal-actions'
                 footer={<Button onClick={closeMap} >CLOSE</Button>}
             >
                 <div className='map-container'>
@@ -42,7 +42,7 @@ const PlaceItem = ({ image, title, address, description, id, coordinates }) => {
                 show={showConfirmModal}
                 onCancel={cancelDeleteHandler}
                 header='Confirm Delete'
-                footerClass='place-item__modal-actions'
+                footerClass='trip-item__modal-actions'
                 footer={
                     <>
                         <Button inverse onClick={cancelDeleteHandler}>CANCEL</Button>
@@ -52,19 +52,19 @@ const PlaceItem = ({ image, title, address, description, id, coordinates }) => {
             >
                 <p>You are deleting this trip. Click DELETE to confirm.</p>
             </Modal>
-            <li className='place-item'>
-                <Card className='place-item__content'>
-                    <div className='place-item__image'>
+            <li className='trip-item'>
+                <Card className='trip-item__content'>
+                    <div className='trip-item__image'>
                         <img src={image} alt={title} />
                     </div>
-                    <div className='place-item__info'>
+                    <div className='trip-item__info'>
                         <h2>{title}</h2>
                         <h3>{address}</h3>
                         <p>{description}</p>
                     </div>
-                    <div className='place-item__actions'>
+                    <div className='trip-item__actions'>
                         <Button inverse onClick={openMap}>VIEW ON MAP</Button>
-                        {auth.isLoggedIn && <Button to={`/places/${id}`}>EDIT</Button>}
+                        {auth.isLoggedIn && <Button to={`/trips/${id}`}>EDIT</Button>}
                         {auth.isLoggedIn && <Button danger onClick={showDeleteWarningHandler}>DELETE</Button>}
                     </div>
                 </Card>
@@ -73,4 +73,4 @@ const PlaceItem = ({ image, title, address, description, id, coordinates }) => {
     )
 }
 
-export default PlaceItem;
+export default TripItem;

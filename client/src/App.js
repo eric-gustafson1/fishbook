@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Users from './pages/Users';
-import NewPlace from './pages/NewPlace';
-import UserPlaces from './pages/UserPlaces'
+import NewTrip from './pages/NewTrip';
+import UserTrips from './pages/UserTrips'
 import MainNav from './components/Navigation/MainNav';
-import UpdatePlace from './pages/UpdatePlace';
+import UpdateTrips from './pages/UpdateTrips';
 import Auth from './pages/Auth';
 import { AuthContext } from './components/context/auth-context';
 
@@ -28,14 +28,14 @@ const App = () => {
         <Route exact path="/">
           <Users />
         </Route>
-        <Route exact path='/:userid/places'>
-          <UserPlaces />
+        <Route exact path='/:userid/trips'>
+          <UserTrips />
         </Route>
-        <Route exact path="/places/new">
-          <NewPlace />
+        <Route exact path="/trips/new">
+          <NewTrip />
         </Route>
-        <Route exact path="/places/:pid">
-          <UpdatePlace />
+        <Route exact path="/trips/:pid">
+          <UpdateTrips />
         </Route>
         <Redirect to='/' />
       </Switch>
@@ -47,8 +47,8 @@ const App = () => {
         <Route exact path="/">
           <Users />
         </Route>
-        <Route exact path='/:userid/places'>
-          <UserPlaces />
+        <Route exact path='/:userid/trips'>
+          <UserTrips />
         </Route>
         <Route exact path="/auth">
           <Auth />

@@ -66,7 +66,8 @@ const Input = (props) => {
                 rows={props.rows || 3}
                 onChange={changeHandler}
                 onBlur={touchHandler}
-                value={inputState.value} />
+                value={inputState.value}
+            />
         )
 
     return (

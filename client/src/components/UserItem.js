@@ -4,17 +4,17 @@ import Avatar from '../components/UIElements/Avatar';
 import Card from '../components/UIElements/Card';
 import './UserItem.css'
 
-const UserItem = ({ id, image, name, placeCount }) => {
+const UserItem = ({ id, image, name, tripCount }) => {
     return (
         <li className='user-item'>
             <Card className='user-item__content'>
-                <Link to={`/${id}/places`} >
+                <Link to={`/${id}/trips`} >
                     <div className='user-item__image'>
                         <Avatar image={image} alt={name} />
                     </div>
                     <div className='user-item__info'>
                         <h2>{name}</h2>
-                        <h3>{placeCount} {placeCount === 1 ? 'Place' : 'Places'}</h3>
+                        <h3>{tripCount} {tripCount === 1 ? 'Trip' : 'Trips'}</h3>
                     </div>
                 </Link>
             </Card>

@@ -5,10 +5,10 @@ import Button from '../components/FormElements/Button';
 import Card from '../components/UIElements/Card';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../components/utils/validators';
 import { useForm } from '../components/hooks/form-hook';
-import './FormPlace.css';
+import './FormTrip.css';
 
 
-const TEMP_PLACES = [
+const TEMP_TRIPS = [
     {
         id: 'p1',
         title: 'Eagle River',
@@ -48,9 +48,9 @@ const TEMP_PLACES = [
 ]
 
 
-const UpdatePlace = () => {
+const UpdateTrip = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const placeId = useParams().pid;
+    const tripId = useParams().pid;
 
     const [formState, InputHandler, setFormData] = useForm({
         title: {
@@ -63,31 +63,31 @@ const UpdatePlace = () => {
         }
     }, false);
 
-    const identifiedPlace = TEMP_PLACES.find(place => place.id === placeId)
+    const identifiedTrip = TEMP_TRIPS.find(trip => trip.id === tripId)
 
     useEffect(() => {
-        if (identifiedPlace) {
+        if (identifiedTrip) {
             setFormData({
                 title: {
-                    value: identifiedPlace.title,
+                    value: identifiedTrip.title,
                     isValid: true
                 },
                 description: {
-                    value: identifiedPlace.description,
+                    value: identifiedTrip.description,
                     isValid: true
                 }
             }, true)
         }
         setIsLoading(false);
-    }, [setFormData, identifiedPlace]);
+    }, [setFormData, identifiedTrip]);
 
-    const placeUpdateSubmitHandler = (e) => {
+    const tripUpdateSubmitHandler = (e) => {
         e.preventDefault();
         console.log(formState.inputs);
 
     };
 
-    if (!identifiedPlace) {
+    if (!identifiedTrip) {
         return (
             <div className='center'>
                 <Card>
@@ -107,7 +107,7 @@ const UpdatePlace = () => {
 
     return (
 
-        <form className='place-form' onSubmit={placeUpdateSubmitHandler}>
+        <form className='trip-form' onSubmit={tripUpdateSubmitHandler}>
             <Input
                 id='title'
                 element='input'
@@ -136,4 +136,4 @@ const UpdatePlace = () => {
     )
 }
 
-export default UpdatePlace;
+export default UpdateTrip;
