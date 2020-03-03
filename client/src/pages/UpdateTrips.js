@@ -13,6 +13,9 @@ const TEMP_TRIPS = [
         id: 'p1',
         title: 'Eagle River',
         description: 'Easy access and beautiful river',
+        weather: 'sunny',
+        flies: 'top secret',
+        date: '09/12/2019',
         image: 'https://www.coloradoflyfishingreports.com/co-fly-fishing-blog/wp-content/uploads/2015/03/CO_Rainbow_Trout_March-1024x593.jpg',
         address: 'Gypsum, CO',
         creator: 'u1',
@@ -25,6 +28,9 @@ const TEMP_TRIPS = [
         id: 'p2',
         title: 'Eagle River',
         description: 'Easy access and beautiful river',
+        weather: 'sunny',
+        flies: 'top secret',
+        date: '09/12/2019',
         image: 'https://www.coloradoanglingcompany.com/wp-content/uploads/2018/03/Eagle-River-Trout-Spring-2018.jpg',
         address: 'Gypsum, CO',
         creator: 'u2',
@@ -37,6 +43,9 @@ const TEMP_TRIPS = [
         id: 'p3',
         title: 'Eagle River',
         description: 'Easy access and beautiful river',
+        weather: 'sunny',
+        flies: 'top secret',
+        date: '09/12/2019',
         image: 'https://eagleoutside.com/wp-content/uploads/2015/06/Eagle-River-2.jpg',
         address: 'Gypsum, CO',
         creator: 'u3',
@@ -60,6 +69,18 @@ const UpdateTrip = () => {
         description: {
             value: '',
             isValid: false
+        },
+        weather: {
+            value: '',
+            isValid: false
+        },
+        flies: {
+            value: '',
+            isValid: false
+        },
+        date: {
+            value: '',
+            isValid: false
         }
     }, false);
 
@@ -74,6 +95,18 @@ const UpdateTrip = () => {
                 },
                 description: {
                     value: identifiedTrip.description,
+                    isValid: true
+                },
+                weather: {
+                    value: identifiedTrip.weather,
+                    isValid: true
+                },
+                flies: {
+                    value: identifiedTrip.flies,
+                    isValid: true
+                },
+                date: {
+                    value: identifiedTrip.date,
                     isValid: true
                 }
             }, true)
@@ -129,6 +162,40 @@ const UpdateTrip = () => {
                 initialValue={formState.inputs.description.value}
                 initialValid={formState.inputs.description.isValid}
             />
+            <Input
+                id='weather'
+                element='input'
+                type='text'
+                label='Weather Conditions'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='Describe the weather...'
+                onInput={InputHandler}
+                initialValue={formState.inputs.weather.value}
+                initialValid={formState.inputs.weather.isValid}
+            />
+            <Input
+                id='flies'
+                element='input'
+                type='text'
+                label='Flies Used'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='What flies worked...'
+                onInput={InputHandler}
+                initialValue={formState.inputs.flies.value}
+                initialValid={formState.inputs.flies.isValid}
+            />
+            <Input
+                id='date'
+                element='input'
+                type='text'
+                label='Trip Date'
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText='Enter the date...'
+                onInput={InputHandler}
+                initialValue={formState.inputs.date.value}
+                initialValid={formState.inputs.date.isValid}
+            />
+
             <Button type='submit' disabled={!formState.isValid} >
                 UPDATE TRIP</Button>
         </form>

@@ -19,6 +19,18 @@ const NewTrip = () => {
         address: {
             value: '',
             isValid: false
+        },
+        weather: {
+            value: '',
+            isValid: false
+        },
+        flies: {
+            value: '',
+            isValid: false
+        },
+        date: {
+            value: '',
+            isValid: false
         }
     }, false);
 
