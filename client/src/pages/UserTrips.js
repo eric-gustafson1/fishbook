@@ -1,53 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TripList from '../components/TripList';
 import { useParams } from 'react-router-dom';
+import ErrorModal from '../components/UIElements/ErrorModal';
+import LoadingSpinner from '../components/UIElements/LoadingSpinner';
 
-const TEMP_TRIPS = [
-    {
-        id: 'p1',
-        title: 'Eagle River',
-        description: 'Easy access and beautiful river',
-        weather: 'sunny',
-        image: 'https://www.coloradoflyfishingreports.com/co-fly-fishing-blog/wp-content/uploads/2015/03/CO_Rainbow_Trout_March-1024x593.jpg',
-        address: 'Gypsum, CO',
-        creator: 'u1',
-        location: {
-            lat: 39.653170,
-            lng: -106.913686
-        }
-    },
-    {
-        id: 'p2',
-        title: 'Eagle River',
-        description: 'Easy access and beautiful river',
-        weather: 'sunny',
-        image: 'https://www.coloradoanglingcompany.com/wp-content/uploads/2018/03/Eagle-River-Trout-Spring-2018.jpg',
-        address: 'Gypsum, CO',
-        creator: 'u2',
-        location: {
-            lat: 39.653170,
-            lng: -106.913686
-        }
-    },
-    {
-        id: 'p3',
-        title: 'Eagle River',
-        description: 'Easy access and beautiful river',
-        weather: 'sunny',
-        image: 'https://eagleoutside.com/wp-content/uploads/2015/06/Eagle-River-2.jpg',
-        address: 'Gypsum, CO',
-        creator: 'u3',
-        location: {
-            lat: 39.653170,
-            lng: -106.913686
-        }
-    }
-]
+
 
 const UserTrips = () => {
     const userId = useParams().userid;
-    const loadedTrips = TEMP_TRIPS.filter(trip => trip.creator === userId)
-    return <TripList items={loadedTrips} />
-}
+    const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [loadedTrips, setLoadedTrips] = useState();
+
+    useEffect(() => {
+        const fetchTrips = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/trips/user/${userId}`);
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(responseData.message)
+                }
+                setLoadedTrips(responseData.trips);
+
+            } catch (err) {
+                setIsLoading(false);
+                setError(err.message);
+            }
+            setIsLoading(false);
+
+        }
+        fetchTrips();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const errorHandler = () => {
+        setError(null);
+    }
+
+    const TripDeletedHandler = (deletedTripId) => {
+        setLoadedTrips(prevTrips => prevTrips.filter(trip => trip.id !== deletedTripId))
+
+    }
+
+    return (
+        <>
+            <ErrorModal error={error} onClear={errorHandler} />
+            {isLoading && (
+                <div className='center'>
+                    <LoadingSpinner />
+                </div>
+            )}
+            {!isLoading && loadedTrips && <TripList items={loadedTrips} onDeleteTrip={TripDeletedHandler} />}
+
+        </>
+    )
+};
+
 
 export default UserTrips;

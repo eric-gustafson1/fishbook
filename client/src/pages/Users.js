@@ -1,32 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UsersList from '../components/UsersList';
-import pic from './pic1.jpg'
-import pic2 from './pic2.jpg'
-import pic3 from './pic3.jpg'
+import ErrorModal from '../components/UIElements/ErrorModal';
+import LoadingSpinner from '../components/UIElements/LoadingSpinner';
 
 const Users = () => {
-    const USERS = [
-        {
-            id: 'u1',
-            name: 'Eric',
-            image: pic,
-            places: 5
-        },
-        {
-            id: 'u2',
-            name: 'Jon',
-            image: pic2,
-            places: 5
-        },
-        {
-            id: 'u3',
-            name: 'John',
-            image: pic3,
-            places: 5
-        }
-    ];
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+    const [loadedUsers, setLoadedUsers] = useState();
 
-    return <UsersList items={USERS} />
+
+    useEffect(() => {
+        const sendRequest = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`);
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(responseData.message);
+                }
+                setLoadedUsers(responseData.users);
+            } catch (err) {
+                setIsLoading(false);
+                setError(err.message);
+            }
+            setIsLoading(false);
+        };
+        sendRequest();
+    }, []);
+
+    const errorHandler = () => {
+        setError(null)
+    }
+
+    return (
+        <>
+            <ErrorModal error={error} onClear={errorHandler} />
+            {isLoading && (
+                <div className="center">
+                    <LoadingSpinner />
+                </div>
+            )}
+            {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
+        </>
+    );
 };
 
 export default Users;

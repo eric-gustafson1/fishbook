@@ -20,7 +20,7 @@
     background: #cc6600;
   }
   
-  .user-item__content {
+  .card.user-item__content {
     padding: 0;
   }
   

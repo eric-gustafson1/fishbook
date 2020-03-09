@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Users from './pages/Users';
 import NewTrip from './pages/NewTrip';
@@ -8,20 +8,36 @@ import UpdateTrips from './pages/UpdateTrips';
 import Auth from './pages/Auth';
 import { AuthContext } from './components/context/auth-context';
 
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = useCallback(() => {
-    setIsLoggedIn(true)
+const App = () => {
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(false);
+
+
+  const login = useCallback((userId, token) => {
+    setToken(token)
+    setUserId(userId)
+    localStorage.setItem('userData', JSON.stringify({ userId: userId, token: token }));
   }, []);
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false)
+    setToken(null)
+    setUserId(null)
+    localStorage.removeItem('userData');
   }, []);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+
+    if (storedData && storedData.token) {
+      login(storedData.userId, storedData.token)
+    }
+  }, [login])
+
 
   let routes;
 
-  if (isLoggedIn) {
+  if (token) {
     //Routes available if logged in
     routes = (
       <Switch>
@@ -62,7 +78,9 @@ const App = () => {
   return (
     <AuthContext.Provider value={
       {
-        isLoggedIn: isLoggedIn,
+        isLoggedIn: !!token,
+        token: token,
+        userId: userId,
         login: login,
         logout: logout
       }

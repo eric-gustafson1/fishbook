@@ -12,6 +12,7 @@ const MainNav = (props) => {
     const openDrawer = () => setDrawerIsOpen(true);
     const closeDrawer = () => setDrawerIsOpen(false);
 
+
     return (
         <>
             {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
@@ -27,7 +28,8 @@ const MainNav = (props) => {
                     <span />
                 </button>
                 <h1 className='main-navigation__title'>
-                    <Link to='/'>Fishbook</Link>
+                    {/* <Link to='/'>Fishbook</Link> */}
+                    <Link to='/'>fishbook</Link>
                 </h1>
                 <nav className='main-navigation__header-nav'>
                     <NavLinks />
