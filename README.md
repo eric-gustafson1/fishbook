@@ -2,18 +2,10 @@
 The frontend code for a MERN stack application for logging and referencing your fly-fishing trips.
 
 * Frontend validation
-* Backend validation with express-validator
 * Google Maps API
 * Google Geocoding API
-* UUID for unique user id's
-* axios for API requests
-* mongoose-unique-validator
-* MongoDB Atlas Cloud hosting on AWS
 * dotenv to secure API keys
 * momentjs to format dates retrieved form MongoDB
-* multer npm package for multipart form data
-* bcryptjs npm package for user password encryption
-* jsonwebtoken npm packageto implement authentication 
 
 # Futures
 * movable geocoding pin to pinpoint specific spots to referenece again later
