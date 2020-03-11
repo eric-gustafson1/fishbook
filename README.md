@@ -1,5 +1,5 @@
 # fishbook
-A MERN stack application for logging and referencing your fly-fishing trips.
+The frontend code for a MERN stack application for logging and referencing your fly-fishing trips.
 
 * Frontend validation
 * Backend validation with express-validator
@@ -11,9 +11,9 @@ A MERN stack application for logging and referencing your fly-fishing trips.
 * MongoDB Atlas Cloud hosting on AWS
 * dotenv to secure API keys
 * momentjs to format dates retrieved form MongoDB
-* multer Node.js package for multipart form data
-* bcryptjs for user password encryption
-* jsonwebtoken to implement authentication 
+* multer npm package for multipart form data
+* bcryptjs npm package for user password encryption
+* jsonwebtoken npm packageto implement authentication 
 
 # Futures
 * movable geocoding pin to pinpoint specific spots to referenece again later
@@ -22,3 +22,11 @@ A MERN stack application for logging and referencing your fly-fishing trips.
 * Ability to upload more pictures and add them to a carousel
 * Store uploaded photos on Amazon S3
 * DB backups
+
+#### GitHub Repo
+[fishbook2020](https://github.com/eric-gustafson1/fishbook)
+
+#### Firebase hosting for the frontend
+[fishbook2020](https://fishbook2020.firebaseapp.com/)
+
+

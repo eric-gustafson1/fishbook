@@ -59,9 +59,7 @@ const NewTrip = () => {
         formData.append('flies', formState.inputs.flies.value)
         formData.append('date', formState.inputs.date.value)
         formData.append('image', formState.inputs.image.value)
-        // formData.append('creator', auth.userId)
 
-        console.log(process.env.REACT_APP_BACKEND_URL)
         try {
             await fetch(`${process.env.REACT_APP_BACKEND_URL}/trips`, {
                 method: 'POST',
