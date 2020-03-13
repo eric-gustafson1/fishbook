@@ -7,8 +7,6 @@ import ErrorModal from '../components/UIElements/ErrorModal';
 import LoadingSpinner from '../components/UIElements/LoadingSpinner';
 import { AuthContext } from './context/auth-context'
 import moment from 'moment';
-// import { tz } from 'moment-timezone';
-// import moment from 'react-moment';
 import './TripItem.css'
 
 const TripItem = ({ image, title, address, description, weather, flies, id, creatorId, coordinates, onDelete, date }) => {
@@ -82,7 +80,8 @@ const TripItem = ({ image, title, address, description, weather, flies, id, crea
                 <Card className='trip-item__content'>
                     {isLoading && <LoadingSpinner asOverlay />}
                     <div className='trip-item__image'>
-                        <img className='center' src={`${process.env.REACT_APP_ASSET_URL}/${image}`} alt={title} />
+                        {/* <img className='center' src={`${process.env.REACT_APP_ASSET_URL}/${image}`} alt={title} /> */}
+                        <img className='center' src={`${process.env.REACT_APP_S3_URL}/${image}`} alt={title} />
                     </div>
                     <div className='trip-item__info'>
                         <h2>{title}</h2>
@@ -91,8 +90,6 @@ const TripItem = ({ image, title, address, description, weather, flies, id, crea
                         {auth.userId && <p><b>Conditions: </b>{weather}</p>}
                         {auth.userId && <p><b>Description: </b>{description}</p>}
                         {auth.userId && <p><b>Flies Used: </b>{flies}</p>}
-
-
                     </div>
                     <div className='trip-item__actions'>
                         <Button inverse onClick={openMap}>VIEW ON MAP</Button>

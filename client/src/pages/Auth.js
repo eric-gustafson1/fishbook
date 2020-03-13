@@ -8,6 +8,7 @@ import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../comp
 import { useForm } from '../components/hooks/form-hook';
 import { AuthContext } from '../components/context/auth-context';
 import ImageUpload from '../components/FormElements/ImageUpload';
+import { useHistory } from 'react-router-dom';
 import './Auth.css';
 
 const Auth = () => {
@@ -102,6 +103,8 @@ const Auth = () => {
                 }
                 setIsLoading(false);
                 auth.login(responseData.userId, responseData.token);
+                history.push('/');
+
             } catch (err) {
                 setIsLoading(false);
                 setError(err.message || 'Something went wrong, try again.')
@@ -112,6 +115,8 @@ const Auth = () => {
     const errorHandler = () => {
         setError(null);
     }
+
+    const history = useHistory();
 
     return (
         <>
