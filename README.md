@@ -42,9 +42,8 @@ Click NEW TRIP to enter trip details.
 # Futures
 * movable geocoding pin to pinpoint specific spots to referenece again later
 * Use social media for authentication instead of managing users and passwords
-* Search trips by date or location
-* Ability to upload more pictures and add them to a carousel
-* Store uploaded photos on Amazon S3
+* Search trips by date range or location
+* Ability to upload more pictures for each trip and add them to a carousel
 * DB backups
 
 #### GitHub Repo
